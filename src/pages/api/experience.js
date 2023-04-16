@@ -9,8 +9,8 @@ const cors = Cors({
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
   if (req.method === "GET") {
-    // todo: add projects
-    const projects = [
+    // todo: add experience
+    const experience = [
       {
         name: "Liberty: Experience the ISS like never before.",
         description:
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       },
     ];
 
-    return res.json(projects);
+    return res.json(experience);
   } else {
     return res.status(400).json({ message: "Only GET request allowed" });
   }

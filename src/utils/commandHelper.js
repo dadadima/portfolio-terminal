@@ -4,16 +4,16 @@ const COMMANDS = [
         description: "About Me",
     },
     {
-        command: "education",
-        description: "My Education",
-    },
-    {
         command: "skills",
         description: "My Tech Skills",
     },
     {
-        command: "projects",
-        description: "My Tech Projects",
+        command: "experience",
+        description: "My Working Experience",
+    },
+    {
+        command: "education",
+        description: "My Education",
     },
     {
         command: "learning",
@@ -31,21 +31,21 @@ const COMMANDS = [
     },
 ];
 
-const getProjects = async () => {
-    const projects = await (await fetch("/api/projects")).json();
-    const projectHTML =
-        `<h3>My Projects (You can scroll)</h3>` +
-        projects
+const getExperience = async () => {
+    const experience = await (await fetch("/api/experience")).json();
+    const experienceHTML =
+        `<h3>My Working Experience (You can scroll)</h3>` +
+        experience
             .map(
-                (project) => `<div class="command">
-        <a href="${project.link}" target="_blank"><b class="command">${
-                    project.name
-                }</b></a> - <b>${project.stack.join(", ")}</b>
-        <p class="meaning">${project.description}</p>
+                (experience) => `<div class="command">
+        <a href="${experience.link}" target="_blank"><b class="command">${
+                    experience.name
+                }</b></a> - <b>${experience.stack.join(", ")}</b>
+        <p class="meaning">${experience.description}</p>
       </div>`
             )
             .join("");
-    return projectHTML;
+    return experienceHTML;
 };
 
 const getContacts = async () => {
@@ -110,7 +110,7 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   I also have experience in Web Development using Javascript, ReactJS, NextJS.
   `,
 
-    projects: getProjects,
+    experience: getExperience,
 
     contact: getContacts,
 
