@@ -9,6 +9,7 @@ const cors = Cors({
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
   if (req.method === "GET") {
+    // todo: add projects
     const projects = [
       {
         name: "Liberty: Experience the ISS like never before.",
