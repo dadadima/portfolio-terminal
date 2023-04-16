@@ -12,23 +12,18 @@ export default async function handler(req, res) {
     const contactMediums = [
       {
         medium: "github",
-        username: "kavinvalli",
-        link: "https://github.com/kavinvalli",
+        username: "dadadima94",
+        link: "https://github.com/dadadima94",
       },
       {
         medium: "email",
-        username: "mail@kavin.me",
-        link: "mailto:mail@kavin.me",
-      },
-      {
-        medium: "facebook",
-        username: "kavin.valli.25",
-        link: "https://www.facebook.com/kavin.valli.25/",
+        username: "davidee.dima@gmail.com",
+        link: "mailto:davidee.dima@gmail.com",
       },
       {
         medium: "linkedin",
-        username: "kavinvalli",
-        link: "https://www.linkedin.com/in/kavinvalli/",
+        username: "davide-dimatteo",
+        link: "https://www.linkedin.com/in/davide-dimatteo/",
       },
     ];
 
