@@ -33,19 +33,53 @@ const COMMANDS = [
 
 const getExperience = async () => {
     const experience = await (await fetch("/api/experience")).json();
-    const experienceHTML =
-        `<h3>My Working Experience (You can scroll)</h3>` +
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const month = date.toLocaleString("default", {month: "short"});
+        return `${month} ${date.getFullYear()}`;
+    };
+
+    const parseDate = (dateString) => {
+        const date = new Date(`1 ${dateString}`);
+        return date;
+    };
+
+    const computeYearsAndMonths = (startDate, endDate) => {
+        const start = parseDate(startDate);
+        const end = endDate === "Present" ? new Date() : parseDate(endDate);
+        const totalMonths = (end.getFullYear() - start.getFullYear()) * 12 + end.getMonth() - start.getMonth() + 1;
+        const years = Math.floor(totalMonths / 12);
+        const months = totalMonths % 12;
+
+        const yearsString = `${years}y`
+        const monthsString = `${months}m`
+
+        // const yearsString = years === 1 ? `${years} year` : `${years} years`;
+        // const monthsString = months === 1 ? `${months} month` : `${months} months`;
+        return `${yearsString}, ${monthsString}`;
+    };
+
+
+    return `<h3>My Working Experience (You can scroll)</h3>` + `<br>` +
         experience
             .map(
-                (experience) => `<div class="command">
-        <a href="${experience.link}" target="_blank"><b class="command">${
-                    experience.name
-                }</b></a> - <b>${experience.stack.join(", ")}</b>
-        <p class="meaning">${experience.description}</p>
-      </div>`
+                (exp) => `
+    <div class="command">
+        <div style="display: flex; justify-content: space-between;">
+            <span><strong><a href="${exp.companyWebsite}" target="_blank"><b class="command">${exp.companyName}</b></a></strong>, <strong>${exp.title}</strong></span>
+            <span><em>${exp.place.city}</em>, ${computeYearsAndMonths(exp.startDate, exp.endDate)}</span>
+        </div>      
+       
+        <br>
+        <strong>${exp.stack.join(", ")}</strong>
+        <br><br>
+        ${exp.description.replace(/\n/g, "<br>")}
+        <br><hr><br>
+ 
+    </div>`
             )
             .join("");
-    return experienceHTML;
 };
 
 const getContacts = async () => {
