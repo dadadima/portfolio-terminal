@@ -120,7 +120,7 @@ export const CONTENTS = {
         () => `I hold a double degree MSc in Data Science and Engineering from both the <a href="https://kth.se/en">Royal Institute of Technology</a> and the <a href="https://tue.nl/en/">Eindhoven University of Technology</a>. I graduated <i>cum laude</i>, and my MSc thesis on <a href="https://www.diva-portal.org/smash/get/diva2:1651780/FULLTEXT01.pdf" target="_new">Energy-Efficient Private Forecasting
 on Health Data using Spiking Neural Networks</a> was awarded an A grade.
     
-    <br />
+    <br /><br/>
     I also studied Computer and Electronic Engineering at  <a href="https://units.it/en">University of Trieste</a> and Computer Science at <a href="https://tugraz.at/en/home/">Graz University of Technology</a>.
     `,
 
@@ -141,7 +141,7 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   I also have knowledge of Data Science core principles and experience building neural networks models with Tensorflow.
   <br /><br />
   
-  I also have experience in Web Development using Javascript, ReactJS, NextJS.
+  I do have some experience in Web Development using Javascript, ReactJS, NextJS.
   `,
 
     experience: getExperience,

@@ -9,5 +9,5 @@
 }
 
 .validCommand {
-    color: green;
+    color: var(--command-highlight);
 }
