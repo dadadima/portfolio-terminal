@@ -1,17 +1,17 @@
 .terminal {
-  max-height: calc(100vh - 160px);
-  margin-bottom: 20px;
-  overflow-y: scroll;
+    max-height: calc(100vh - 160px);
+    margin-bottom: 20px;
+    overflow-y: scroll;
 }
 
 .terminal::-webkit-scrollbar {
-  width: 0 !important;
+    width: 0 !important;
 }
 
 .terminal {
-  overflow: -moz-scrollbars-none;
+    overflow: -moz-scrollbars-none;
 }
 
 .terminal {
-  -ms-overflow-style: none;
+    -ms-overflow-style: none;
 }
