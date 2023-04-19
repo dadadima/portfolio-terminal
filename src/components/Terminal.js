@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { CONTENTS } from "../utils/commandHelper";
 import Command from "./Command";
 import styles from "./Terminal.module.css";
@@ -35,6 +35,22 @@ export default function Terminal() {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey && event.key === "l") {
+        event.preventDefault(); // Prevent the default browser action for Ctrl+L (e.g. focusing the address bar)
+        addCommand("clear");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      // Clean up the event listener when the component is unmounted
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [commands]);
 
   return (
     <div className={styles.terminal} ref={terminalRef}>
