@@ -2,7 +2,15 @@ import Input from "./Input";
 import Output from "./Output";
 
 // Add commandHistory, historyIndex, and setHistoryIndex as props
-export default function Command({command, output, onSubmit, commandHistory, historyIndex, setHistoryIndex}) {
+export default function Command({
+                                    command,
+                                    output,
+                                    onSubmit,
+                                    commandHistory,
+                                    historyIndex,
+                                    setHistoryIndex,
+                                    isValidCommand, // Add this prop
+                                }) {
     return (
         <div>
             <Input
@@ -10,10 +18,12 @@ export default function Command({command, output, onSubmit, commandHistory, hist
                 onSubmit={(command) => onSubmit(command)}
                 commandHistory={commandHistory}
                 historyIndex={historyIndex}
-                setHistoryIndex={setHistoryIndex} // Add this prop
+                setHistoryIndex={setHistoryIndex}
+                isValidCommand={isValidCommand} // Pass down the isValidCommand prop
             />
             {output && <Output output={output}/>}
         </div>
     );
 }
+
 

@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {CONTENTS} from "../utils/commandHelper";
 import styles from "./Input.module.css";
 
 export default function Input({
@@ -9,6 +10,7 @@ export default function Input({
                                   setHistoryIndex,
                               }) {
     const [_command, setCommand] = useState(command ? command : "");
+    const [isValidCommand, setIsValidCommand] = useState(false);
 
     const handleKeyDown = (e) => {
         if (e.key === "ArrowUp") {
@@ -26,11 +28,20 @@ export default function Input({
         }
     };
 
+    const checkValidCommand = (cmd) => {
+        return cmd in CONTENTS || cmd === "clear";
+    };
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setCommand("");
         return onSubmit(_command);
     };
+
+    useEffect(() => {
+        setIsValidCommand(checkValidCommand(_command));
+    }, [_command]);
 
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -42,10 +53,10 @@ export default function Input({
 
             <input
                 type="text"
-                className={styles.input}
+                className={`${styles.input} ${isValidCommand ? styles.validCommand : ""}`}
                 value={_command}
                 onChange={(e) => setCommand(e.target.value)}
-                onKeyDown={handleKeyDown} // Add this event listener
+                onKeyDown={handleKeyDown}
                 disabled={command ? true : false}
                 ref={(input) => input && !command && input.focus()}
                 autoFocus={command === ""}
