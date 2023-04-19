@@ -7,6 +7,8 @@ export default function Terminal() {
     const [commands, setCommands] = useState([]);
     const [loading, setLoading] = useState(false);
     const terminalRef = useRef(null);
+    const [commandHistory, setCommandHistory] = useState([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
 
     const escapeHTML = (str) =>
         str
@@ -28,6 +30,9 @@ export default function Terminal() {
         } else {
             output = CONTENTS.error(escapeHTML(command));
         }
+
+        setCommandHistory([...commandHistory, command]);
+        setHistoryIndex(commandHistory.length +1 );
 
         setLoading(false);
         setCommands([...commands.slice(0, commands.length), {command, output}]);
@@ -58,7 +63,14 @@ export default function Terminal() {
             {commands.map(({command, output}, index) => (
                 <Command command={command} output={output} key={index}/>
             ))}
-            {!loading && <Command onSubmit={(command) => addCommand(command)}/>}
+            {!loading && (
+                <Command
+                    onSubmit={(command) => addCommand(command)}
+                    commandHistory={commandHistory}
+                    historyIndex={historyIndex}
+                    setHistoryIndex={setHistoryIndex}
+                />
+            )}
         </div>
     );
 }
