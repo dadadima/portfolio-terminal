@@ -14,6 +14,7 @@ export default function Home() {
           Regular website
         </a>
       </p>
+        <br/>
 
       <Terminal />
     </div>

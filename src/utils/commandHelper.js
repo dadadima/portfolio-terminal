@@ -24,8 +24,15 @@ const COMMANDS = [
         description: "Contact Me",
     },
     {
+        command: "shortcuts",
+        description: "Keyboard shortcuts",
+    },
+    {
+        command: "help",
+        description: "List of commands",
+    },
+    {
         command:
-        // 'clear <span style="color: var(--primary)">(Ctrl+L shortcut)</span>',
             "clear",
         description: "Clear terminal",
     },
@@ -55,9 +62,7 @@ const getExperience = async () => {
         const yearsString = `${years}y`
         const monthsString = months > 0 ? `${months}m` : ``;
 
-        // const yearsString = years === 1 ? `${years} year` : `${years} years`;
-        // const monthsString = months === 1 ? `${months} month` : `${months} months`;
-        return years > 0 ? `${yearsString} ${monthsString}`: `${monthsString}`;
+        return years > 0 ? `${yearsString} ${monthsString}` : `${monthsString}`;
     };
 
 
@@ -98,7 +103,7 @@ export const CONTENTS = {
     help: () =>
         COMMANDS.map(
             (command) => `<div style="display: flex; justify-content: space-between;">
-        <p style="font-size: 15px">${command.command}</p>
+        <p>${command.command}</p>
         <p>${command.description}</p>
       </div>`
         ).join("") +
@@ -149,9 +154,28 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
 
     learning: () => `I am currently learning Rust by following <a href="https://app.pluralsight.com/library/courses/fundamentals-rust/table-of-contents" target="_blank">Rust Fundamentals by Edward Curren</a>.`,
 
+    shortcuts: () => SHORTCUTS.map(
+        (shortcut) => `<div style="display: flex; justify-content: space-between;">
+      <p>${shortcut.name}</p>
+        <p>${shortcut.keyCombination || shortcut.link}</p>
+    </div>`
+    ).join(""),
+
     error: (input) =>
         `<div class="help-command">sh: command not found: ${input}</div><div class="help-command">See \`help\` for info`,
 };
+
+const SHORTCUTS = [
+    {
+        name: "clear",
+        keyCombination: "⌃ + L",
+    },
+    {
+        name: "navigate command history",
+        link: "↑ or ↓",
+    }
+
+];
 
 function getAge(dateString) {
     const today = new Date();
