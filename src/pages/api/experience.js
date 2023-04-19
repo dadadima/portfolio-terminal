@@ -12,58 +12,64 @@ export default async function handler(req, res) {
         const experience = [
             {
                 companyName: "Frontiers",
-                companyWebsite: "https://www.frontiersin.org/",
+                companyWebsite: "https://frontiersin.org/",
                 title: "Senior Data Engineer",
-                description: "Current Data Engineer at ABN AMRO Clearing based in Amsterdam, operating in the financial domain. 2+ years experience specializing in the creation of scalable ETL pipelines in the cloud, infrastructure automation, and design of complex data product. Interested in devising a better problem-solving method for challenging tasks, and learning new technologies and tools if the need arises.",
-                stack: ["Python", "Airflow", "dbt", "Kafka", "Airbyte", "BigQuery", "Azure DevOps", "GCP", "Terraform", "Docker", "SQL"],
+                description: "Working full-remote for the largest open-access scientific publisher. Part of the data engineering team responsible for building the company data-lake from the ground.", // todo add more
+                stack: ["Python", "Airflow", "dbt", "Kafka", "Airbyte", "BigQuery", "GCP", "Terraform", "Docker", "SQL"],
                 place: {city: "Amsterdam", country: "the Netherlands"},
-                startDate: "Dec. 2020",
+                startDate: "Dec. 2022",
                 endDate: "Present"
             },
-            // {
-            //     companyName: "ABN AMRO Clearing Bank",
-            //     title: "Data Engineer",
-            //     description: "Current Data Engineer at ABN AMRO Clearing based in Amsterdam, operating in the financial domain. 2+ years experience specializing in the creation of scalable ETL pipelines in the cloud, infrastructure automation, and design of complex data product. Interested in devising a better problem-solving method for challenging tasks, and learning new technologies and tools if the need arises.",
-            //     stack: "AWS(Glue, IAM, DirectConnect, DataSync, EMR, MWAA, lambda, Athena), CDK, Spark, Kafka, Flume, Scala, Python, Bash scripting",
-            //     place: "Amsterdam, the Netherlands",
-            //     startDate: "Jan. 2022",
-            //     endDate: "Dec. 2022"
-            // },
-            // {
-            //     companyName: "DPG Media",
-            //     title: "Data Engineer",
-            //     description: "Working in the data engineering team operating within B2B with a significant focus on digital advertisement. Building, owning, and maintaining scalable ETL pipelines using Airflow, Spark, Scala (up to several TBs of data per day per pipeline). Extracting data from many different sources via APIs and integrating them seamlessly into the data landscape. Creation of several data products that satisfy different business needs (yielding, audience targeting and inventory, revenue reports, etc). Storing and updating data products in different data warehouses (Snowflake, Redshift, Athena).",
-            //     stack: "AWS(Glue, EKS, CodeBuild/Pipeline, Lambda, EMR, IAM, etc.), Terraform, Airflow, Concourse, Spark, Scala, Python, Snowflake, SQL, Bash scripting",
-            //     place: "Amsterdam, the Netherlands",
-            //     startDate: "Sep. 2020",
-            //     endDate: "Jan. 2022"
-            // },
-            // {
-            //     companyName: "Electrolux",
-            //     title: "DATA SCIENCE AND ENGINEERING - FULL TIME",
-            //     description: "Responsible for finding a suitable data solution to spot malfunctioning appliances using sensor data. Deployment of the Elastic Stack up to scale (hundreds GBs per day). Creation of an ETL pipeline using Logstash that reads from Azure Blob Storage and indexes data into Elasticsearch. Tested different data models using the Anomaly Detection service by Elastic and representing the results in Kibana. Implementation of an Anomaly Detection model using Spark/Scala on Databricks to use as a baseline.",
-            //     stack: "Elastic Stack, Logstash, Azure Blob Storage, Elasticsearch, Kibana, Spark, Scala, Databricks",
-            //     place: "",
-            //     startDate: "",
-            //     endDate: ""
-            // },
-            // {
-            //     companyName: "Department of Electrical Engineering and Computer Science - KTH",
-            //     title: "Teaching Assistant for Interaction Programming and The Dynamic Web - part time",
-            //     description: "Responsible for the Labs for a Bachelor course in Dynamic Web Programming. Preparing and editing the course material in coordination with the professor. Assisting, coordinating, and assessing laboratories and coding projects.",
-            //     stack: "JavaScript, DOM APIs, HTML5, CSS3, MVC, Redux, React",
-            //     place: "",
-            //     startDate: "",
-            //     endDate: ""
-            // },
-            // {
-            //     companyName: "NXP Semiconductors",
-            //     title: "SOFTWARE DEVELOPER - FULL TIME INTERNSHIP",
-            //     description: "Developing a GUI application which enables hardware testers to generate configuration files",
-            //     place: "",
-            //     startDate: "",
-            //     endDate: ""
-            // },
+            {
+                companyName: "ABN AMRO Clearing Bank",
+                companyWebsite: "https://abnamro.com/clearing/en/home",
+                title: "Data Engineer",
+                description: "Working in the finance industry as a consultant part of cross-functional team responsible for migrating the entire data platform to AWS. Responsibilities and tasks with lots of overlapping with Cloud Engineering.",
+                stack: ["Python", "CDK", "AWS", "Scala", "Spark", "Airflow", "Kafka", "Hadoop", "Athena", "Bash"],
+                place: {city: "Amsterdam", country: "the Netherlands"},
+                startDate: "Jan. 2022",
+                endDate: "Dec. 2022"
+            },
+            {
+                companyName: "DPG Media",
+                companyWebsite: "https://dpgmediagroup.com/en-NL",
+                title: "Data Engineer",
+                description: "Working in a large media company in the data engineering team operating on digital advertisement. Building and maintaining high-volume ETL pipelines creating data products exposed in Redshift and Snowflake.",
+                stack: ["Scala", "Spark", "Airflow", "AWS", "Terraform", "Python", "SQL", "Snowflake", "Redshift"],
+                place: {city: "Amsterdam", country: "the Netherlands"},
+                startDate: "Sep. 2020",
+                endDate: "Jan. 2022"
+            },
+            {
+                companyName: "Electrolux",
+                companyWebsite: "https://electrolux.com/en/",
+                title: "Data Scientist",
+                description: "Working in the Data Science team and closely collaborating with the Data Platform Team. Responsible for building a ML model to spot malfunctioning appliances using sensor data in order to improve the R&D process.",
+                stack: ["Scala", "Spark", "MLLib", "Elasticsearch", "Logstash", "Kibana", "Azure", "Databricks"],
+                place: {city: "Stockholm", country: "Sweden"},
+                startDate: "Jan. 2020",
+                endDate: "Jul. 2020"
+            },
+            {
+                companyName: "Royal University of Technology",
+                companyWebsite: "https://kth.se/en/eecs/skolan-for-elektroteknik-och-datavetenskap-1.760855",
+                title: "Teaching Assistant",
+                description: "Working in the Department of Electrical Engineering and Computer Science. Responsible for the Labs for a course in Dynamic Web Programming. Preparing, coordinating, and assessing laboratories and coding projects.",
+                stack: ["JavaScript", "DOM APIs", "HTML5", "CSS3", "Redux", "React"],
+                place: {city: "Stockholm", country: "Sweden"},
+                startDate: "Oct. 2019",
+                endDate: "Jan. 2020"
+            },
+            {
+                companyName: "NXP Semiconductors",
+                companyWebsite: "https://nxp.com/",
+                title: "Software Developer Intern",
+                description: "Working in the Hardware Verification and Validation team. Developing a GUI application which enables hardware testers to generate configuration files for an on-chip oscilloscope.",
+                stack: ["Java", "JavaFX", "MySQL", "Approval Tests"],
+                place: {city: "Graz", country: "Austria"},
+                startDate: "May 2018",
+                endDate: "Aug. 2018"
+            },
 
         ];
 

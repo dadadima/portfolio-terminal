@@ -53,11 +53,11 @@ const getExperience = async () => {
         const months = totalMonths % 12;
 
         const yearsString = `${years}y`
-        const monthsString = `${months}m`
+        const monthsString = months > 0 ? `${months}m` : ``;
 
         // const yearsString = years === 1 ? `${years} year` : `${years} years`;
         // const monthsString = months === 1 ? `${months} month` : `${months} months`;
-        return `${yearsString}, ${monthsString}`;
+        return years > 0 ? `${yearsString} ${monthsString}`: `${monthsString}`;
     };
 
 
@@ -75,7 +75,7 @@ const getExperience = async () => {
         <strong>${exp.stack.join(", ")}</strong>
         <br><br>
         ${exp.description.replace(/\n/g, "<br>")}
-        <br><hr><br>
+        <br><br><hr><br>
  
     </div>`
             )
