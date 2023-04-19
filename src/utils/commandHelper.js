@@ -109,11 +109,10 @@ export const CONTENTS = {
         "October 04, 1994"
     )} and I\'m a Data Engineer.
     <br/><br/>
-    I love coding in Javascript, Typescript and Python, and have worked with frameworks like ReactJS, VueJS, Express, and Django. I currently use RemixJS, NextJS, Laravel, and NodeJS in a lot of my projects.
+    
     <br /><br />
-    I am a developer at <a href="https://tricycle.life" target="_blank">Tricycle</a> and President at <a href="https://exunclan.com" target="_blank">Exun Clan</a>, and a student at <a href="https://dpsrkp.net" target="_blank">Delhi Public School, R.K. Puram</a>
+    
     <br />
-    I am also the Chapter Officer at the <a href="https://new-delhi-space-society.github.io" target="_blank">New Delhi Space Society</a>, a chapter of the <a href="https://space.nss.org" target="_blank">National Space Society</a>. I am a core maintainer of <a href="https://typewind.vercel.app" target="_new">Typewind</a>
   `,
 
     education:
