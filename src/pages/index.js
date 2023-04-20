@@ -8,12 +8,12 @@ export default function Home() {
       <h1>
         dima:$ <span className={styles.help}>type help to start</span>
       </h1>
-      <p>
-        Visit{" "}
-        <a href="tobefilled.com" target="_blank" rel="noreferrer">
-          Regular website
-        </a>
-      </p>
+      {/*<p>*/}
+      {/*  Visit{" "}*/}
+      {/*  <a href="tobefilled.com" target="_blank" rel="noreferrer">*/}
+      {/*    Regular website*/}
+      {/*  </a>*/}
+      {/*</p>*/}
         <br/>
 
       <Terminal />

@@ -1,3 +1,7 @@
+import {FaEnvelope, FaGithub, FaLinkedin, FaTelegram} from "react-icons/fa";
+import ReactDOMServer from "react-dom/server";
+
+
 const COMMANDS = [
     {
         command: "about",
@@ -89,11 +93,29 @@ const getExperience = async () => {
 
 const getContacts = async () => {
     const contactMediums = await (await fetch("/api/contacts")).json();
+
+    const getIconSVG = (medium) => {
+        switch (medium) {
+            case "github":
+                return ReactDOMServer.renderToStaticMarkup(<FaGithub/>);
+            case "email":
+                return ReactDOMServer.renderToStaticMarkup(<FaEnvelope/>);
+            case "linkedin":
+                return ReactDOMServer.renderToStaticMarkup(<FaLinkedin/>);
+            case "telegram":
+                return ReactDOMServer.renderToStaticMarkup(<FaTelegram/>);
+            default:
+                return "";
+        }
+    };
+
     return contactMediums
         .map(
             (contact) => `<div style="display: flex; justify-content: space-between;">
       <p style="font-size: 15px">${contact.medium}</p>
-      <a class="meaning" href="${contact.link}" target="_blank">${contact.username}</a>
+      <a class="meaning" href="${contact.link}" target="_blank">${getIconSVG(
+                contact.medium
+            )}</a>
     </div>`
         )
         .join("");

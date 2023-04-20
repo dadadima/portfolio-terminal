@@ -25,6 +25,11 @@ export default async function handler(req, res) {
         username: "davide-dimatteo",
         link: "https://www.linkedin.com/in/davide-dimatteo/",
       },
+      {
+        medium: "telegram",
+        username: "diomatteo",
+        link: "https://t.me/diomatteo",
+      }
     ];
 
     res.json(contactMediums);
