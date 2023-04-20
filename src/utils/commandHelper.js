@@ -45,15 +45,8 @@ const COMMANDS = [
 const getExperience = async () => {
     const experience = await (await fetch("/api/experience")).json();
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const month = date.toLocaleString("default", {month: "short"});
-        return `${month} ${date.getFullYear()}`;
-    };
-
     const parseDate = (dateString) => {
-        const date = new Date(`1 ${dateString}`);
-        return date;
+        return new Date(`1 ${dateString}`);
     };
 
     const computeYearsAndMonths = (startDate, endDate) => {
@@ -134,12 +127,12 @@ export const CONTENTS = {
 
     about: () => `My name is Davide, but everybody calls me Dima. I am ${getAge(
         "October 04, 1994"
-    )} and I\'m a Data Engineer.
-    <br/><br/>
-    
+    )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://frontiersin.org/" target="_blank">Frontiers</a> as a Senior Data Engineer.
     <br /><br />
+    I love solving problems, automating, and fixing things. I am a big fan of Software Engineering principles and I am always looking for ways to improve my code.
+    <br /><br />
+    I am passionate about the infrastructure side of Data Applications and I love experimenting with new technologies.
     
-    <br />
   `,
 
     education:
