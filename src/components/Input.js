@@ -29,7 +29,7 @@ export default function Input({
     };
 
     const checkValidCommand = (cmd) => {
-        return cmd in CONTENTS || cmd === "clear";
+        return cmd.trim() in CONTENTS || cmd.trim() === "clear";
     };
 
 
