@@ -37,20 +37,6 @@ export default function Input({
     if (matchingCommands.length === 1) {
       setCommand(matchingCommands[0]);
     }
-
-    else {
-      const matchingCommand = matchingCommands.reduce((acc, cmd) => {
-        if (acc === '') {
-          return cmd;
-        }
-        let i = 0;
-        while (acc[i] === cmd[i]) {
-          i++;
-        }
-        return acc.slice(0, i);
-      }, '');
-      setCommand(matchingCommand);
-    }
   };
 
   const checkValidCommand = cmd => {
