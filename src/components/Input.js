@@ -36,7 +36,7 @@ export default function Input({
     const handleSubmit = (e) => {
         e.preventDefault();
         setCommand("");
-        return onSubmit(_command);
+        return onSubmit(_command.trim());
     };
 
     useEffect(() => {
