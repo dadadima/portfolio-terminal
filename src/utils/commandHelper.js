@@ -189,7 +189,7 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
     </div>`
     ).join(''),
 
-  error: input =>
+  _error: input =>
     `<div class="help-command">sh: command not found: ${input}</div><div class="help-command">See \`help\` for info`,
 };
 
@@ -202,6 +202,10 @@ const SHORTCUTS = [
     name: 'navigate command history',
     link: '↑ or ↓',
   },
+  {
+    name: 'autocomplete commands',
+    link: '⇥',
+  }
 ];
 
 function getAge(dateString) {
