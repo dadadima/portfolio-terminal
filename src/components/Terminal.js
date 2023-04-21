@@ -27,8 +27,10 @@ export default function Terminal() {
     } else if (command === 'clear') {
       setLoading(false);
       return setCommands([]);
+    } else if (command === '') {
+      output = '';
     } else {
-      output = CONTENTS.error(escapeHTML(command));
+      output = CONTENTS._error(escapeHTML(command));
     }
 
     setCommandHistory([...commandHistory, command]);

@@ -15,16 +15,41 @@ export default function Input({
   const handleKeyDown = e => {
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      // Decrease the history index when moving up
       const newIndex = Math.max(historyIndex - 1, 0);
       setHistoryIndex(newIndex);
       setCommand(commandHistory[newIndex] || '');
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      // Increase the history index when moving down
       const newIndex = Math.min(historyIndex + 1, commandHistory.length - 1);
       setHistoryIndex(newIndex);
       setCommand(commandHistory[newIndex] || '');
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      autocompleteCommand();
+    }
+  };
+
+  const autocompleteCommand = () => {
+    const matchingCommands = Object.keys(CONTENTS).filter(cmd =>
+      cmd.startsWith(_command.trim())
+    );
+
+    if (matchingCommands.length === 1) {
+      setCommand(matchingCommands[0]);
+    }
+
+    else {
+      const matchingCommand = matchingCommands.reduce((acc, cmd) => {
+        if (acc === '') {
+          return cmd;
+        }
+        let i = 0;
+        while (acc[i] === cmd[i]) {
+          i++;
+        }
+        return acc.slice(0, i);
+      }, '');
+      setCommand(matchingCommand);
     }
   };
 
@@ -57,7 +82,7 @@ export default function Input({
         value={_command}
         onChange={e => setCommand(e.target.value)}
         onKeyDown={handleKeyDown}
-        disabled={command ? true : false}
+        disabled={!!command}
         ref={input => input && !command && input.focus()}
         autoFocus={command === ''}
       />
