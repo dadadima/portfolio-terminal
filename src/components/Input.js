@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { CONTENTS } from '../utils/commandHelper';
 import styles from './Input.module.css';
 
@@ -11,6 +11,9 @@ export default function Input({
 }) {
   const [_command, setCommand] = useState(command ? command : '');
   const [isValidCommand, setIsValidCommand] = useState(false);
+  const [autocompleteIndex, setAutocompleteIndex] = useState(0);
+  const originalPrefixRef = useRef('');
+  const matchingCommandsRef = useRef([]);
 
   const handleKeyDown = e => {
     if (e.key === 'ArrowUp') {
@@ -26,16 +29,28 @@ export default function Input({
     } else if (e.key === 'Tab') {
       e.preventDefault();
       autocompleteCommand();
+    }  else {
+      originalPrefixRef.current = '';
+      matchingCommandsRef.current = [];
     }
   };
 
   const autocompleteCommand = () => {
-    const matchingCommands = Object.keys(CONTENTS).filter(cmd =>
-      cmd.startsWith(_command.trim())
-    );
+    if (!originalPrefixRef.current) {
+      originalPrefixRef.current = _command.trim();
+      matchingCommandsRef.current = Object.keys(CONTENTS).filter(cmd =>
+        cmd.startsWith(originalPrefixRef.current)
+      );
+    }
 
-    if (matchingCommands.length === 1) {
-      setCommand(matchingCommands[0]);
+    if (matchingCommandsRef.current.length > 0) {
+      setCommand(
+        matchingCommandsRef.current[autocompleteIndex %
+        matchingCommandsRef.current.length]
+      );
+      setAutocompleteIndex(autocompleteIndex + 1);
+    } else {
+      setAutocompleteIndex(0);
     }
   };
 
