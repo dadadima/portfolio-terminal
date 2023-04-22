@@ -18,8 +18,15 @@ export default function Terminal() {
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
 
-  const addCommand = async (command) => {
-    let output;
+  const executeCommand = async (command) => {
+    if (command === "clear") {
+      setCommands([]);
+      return;
+    }
+
+    if (command === "") {
+      return "";
+    }
 
     const parts = command.split(" ").filter((part) => part !== "");
     const [baseCommand, ...args] = parts;
@@ -27,29 +34,30 @@ export default function Terminal() {
 
     const commandAcceptsArgs = baseCommand === "theme";
 
-    setLoading(true);
-    setCommands([...commands, { command, output: "Loading..." }]);
     if (baseCommand in CONTENTS && (args.length === 0 || commandAcceptsArgs)) {
-      output = await CONTENTS[baseCommand](...args);
-    } else if (command === "clear") {
-      setLoading(false);
-      return setCommands([]);
-    } else if (command === "") {
-      output = "";
+      return await CONTENTS[baseCommand](...args);
     } else {
-      output = CONTENTS._error(escapeHTML(command));
+      return CONTENTS._error(escapeHTML(command));
     }
+  };
 
-    setCommandHistory([...commandHistory, command]);
-    setHistoryIndex(commandHistory.length + 1);
+  const addCommand = async (command) => {
+    setLoading(true);
+
+    const newCommand = { command, output: "Loading..." };
+    setCommands(prevCommands => [...prevCommands, newCommand]);
+
+    const output = await executeCommand(command);
+    newCommand.output = output;
+
+    setCommandHistory(prevCommandHistory => [...prevCommandHistory, command]);
+    setHistoryIndex(prevHistoryIndex => prevHistoryIndex + 1);
 
     setLoading(false);
-    setCommands([...commands.slice(0, commands.length), { command, output }]);
     if (terminalRef) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
   };
-
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -65,7 +73,7 @@ export default function Terminal() {
       // Clean up the event listener when the component is unmounted
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [commands]);
+  }, []);
 
   return (
     <div className={styles.terminal} ref={terminalRef}>
