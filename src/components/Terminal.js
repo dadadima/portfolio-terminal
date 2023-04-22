@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { CONTENTS } from '../utils/commandHelper';
+import { CONTENTS } from '@/utils/commandHelper';
 import Command from './Command';
 import styles from './Terminal.module.css';
 
@@ -18,21 +18,21 @@ export default function Terminal() {
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
 
-  const executeCommand = async (command) => {
-    if (command === "clear") {
+  const executeCommand = async command => {
+    if (command === 'clear') {
       setCommands([]);
       return;
     }
 
-    if (command === "") {
-      return "";
+    if (command === '') {
+      return '';
     }
 
-    const parts = command.split(" ").filter((part) => part !== "");
+    const parts = command.split(' ').filter(part => part !== '');
     const [baseCommand, ...args] = parts;
-    command = parts.join(" ");
+    command = parts.join(' ');
 
-    const commandAcceptsArgs = baseCommand === "theme";
+    const commandAcceptsArgs = baseCommand === 'theme';
 
     if (baseCommand in CONTENTS && (args.length === 0 || commandAcceptsArgs)) {
       return await CONTENTS[baseCommand](...args);
@@ -41,10 +41,10 @@ export default function Terminal() {
     }
   };
 
-  const addCommand = async (command) => {
+  const addCommand = async command => {
     setLoading(true);
 
-    const newCommand = { command, output: "Loading..." };
+    const newCommand = { command, output: 'Loading...' };
     setCommands(prevCommands => [...prevCommands, newCommand]);
 
     const output = await executeCommand(command);

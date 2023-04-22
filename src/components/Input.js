@@ -1,16 +1,17 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { COMMANDS, THEMES } from '../utils/commandHelper';
+import { COMMANDS } from '@/utils/commands';
+import { THEMES } from '@/utils/themes';
 import styles from './Input.module.css';
 
 const commandNames = COMMANDS.map(cmd => cmd.command);
 
 export default function Input({
-                                command,
-                                onSubmit,
-                                commandHistory,
-                                historyIndex,
-                                setHistoryIndex,
-                              }) {
+  command,
+  onSubmit,
+  commandHistory,
+  historyIndex,
+  setHistoryIndex,
+}) {
   const [_command, setCommand] = useState(command ? command : '');
   const [isValidCommand, setIsValidCommand] = useState(false);
   const [autocompleteIndex, setAutocompleteIndex] = useState(0);
@@ -27,8 +28,9 @@ export default function Input({
 
     if (matchingCommandsRef.current.length > 0) {
       setCommand(
-        matchingCommandsRef.current[autocompleteIndex %
-        matchingCommandsRef.current.length]
+        matchingCommandsRef.current[
+          autocompleteIndex % matchingCommandsRef.current.length
+        ]
       );
       setAutocompleteIndex(autocompleteIndex + 1);
     } else {
@@ -36,31 +38,33 @@ export default function Input({
     }
   }, [autocompleteIndex, _command]);
 
-  const handleKeyDown = useCallback(e => {
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      const newIndex = Math.max(historyIndex - 1, 0);
-      setHistoryIndex(newIndex);
-      setCommand(commandHistory[newIndex] || '');
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      const newIndex = Math.min(historyIndex + 1, commandHistory.length - 1);
-      setHistoryIndex(newIndex);
-      setCommand(commandHistory[newIndex] || '');
-    } else if (e.key === 'Tab') {
-      e.preventDefault();
-      autocompleteCommand();
-    } else {
-      originalPrefixRef.current = '';
-      matchingCommandsRef.current = [];
-    }
-  }, [historyIndex, commandHistory, autocompleteCommand]);
-
-
+  const handleKeyDown = useCallback(
+    e => {
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const newIndex = Math.max(historyIndex - 1, 0);
+        setHistoryIndex(newIndex);
+        setCommand(commandHistory[newIndex] || '');
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const newIndex = Math.min(historyIndex + 1, commandHistory.length - 1);
+        setHistoryIndex(newIndex);
+        setCommand(commandHistory[newIndex] || '');
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        autocompleteCommand();
+      } else {
+        originalPrefixRef.current = '';
+        matchingCommandsRef.current = [];
+      }
+    },
+    [historyIndex, commandHistory, autocompleteCommand]
+  );
 
   const checkValidCommand = useCallback(cmd => {
-    const [baseCommand, ...args] = cmd.trim().split(" ");
-    const isValidBaseCommand = commandNames.includes(baseCommand) || baseCommand === 'clear';
+    const [baseCommand, ...args] = cmd.trim().split(' ');
+    const isValidBaseCommand =
+      commandNames.includes(baseCommand) || baseCommand === 'clear';
 
     if (!isValidBaseCommand) {
       return false;
@@ -73,11 +77,14 @@ export default function Input({
     return args.length === 0;
   }, []);
 
-  const handleSubmit = useCallback(e => {
-    e.preventDefault();
-    setCommand('');
-    return onSubmit(_command.trim());
-  }, [_command, onSubmit]);
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      setCommand('');
+      return onSubmit(_command.trim());
+    },
+    [_command, onSubmit]
+  );
 
   useEffect(() => {
     setIsValidCommand(checkValidCommand(_command));
