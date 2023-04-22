@@ -18,17 +18,24 @@ export default function Terminal() {
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
 
-  const addCommand = async command => {
+  const addCommand = async (command) => {
     let output;
+
+    const parts = command.split(" ").filter((part) => part !== "");
+    const [baseCommand, ...args] = parts;
+    command = parts.join(" ");
+
+    const commandAcceptsArgs = baseCommand === "theme";
+
     setLoading(true);
-    setCommands([...commands, { command, output: 'Loading...' }]);
-    if (`${command}` in CONTENTS) {
-      output = await CONTENTS[`${command}`]();
-    } else if (command === 'clear') {
+    setCommands([...commands, { command, output: "Loading..." }]);
+    if (baseCommand in CONTENTS && (args.length === 0 || commandAcceptsArgs)) {
+      output = await CONTENTS[baseCommand](...args);
+    } else if (command === "clear") {
       setLoading(false);
       return setCommands([]);
-    } else if (command === '') {
-      output = '';
+    } else if (command === "") {
+      output = "";
     } else {
       output = CONTENTS._error(escapeHTML(command));
     }
@@ -42,6 +49,7 @@ export default function Terminal() {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
   };
+
 
   useEffect(() => {
     const handleKeyDown = event => {

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
-import { CONTENTS } from '../utils/commandHelper';
-import styles from './Input.module.css';
+import { CONTENTS, THEMES } from '../utils/commandHelper';
+import styles from './Input.module.css';git
 
 export default function Input({
   command,
@@ -55,7 +55,18 @@ export default function Input({
   };
 
   const checkValidCommand = cmd => {
-    return cmd.trim() in CONTENTS || cmd.trim() === 'clear';
+    const [baseCommand, ...args] = cmd.trim().split(" ");
+    const isValidBaseCommand = baseCommand in CONTENTS || baseCommand === 'clear';
+
+    if (!isValidBaseCommand) {
+      return false;
+    }
+
+    if (baseCommand === 'theme' && args.length > 0) {
+      return args[0] === '--help' || Object.keys(THEMES).includes(args[0]);
+    }
+
+    return args.length === 0;
   };
 
   const handleSubmit = e => {

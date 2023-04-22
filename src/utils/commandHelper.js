@@ -27,6 +27,10 @@ const COMMANDS = [
     description: 'Contact Me',
   },
   {
+    command: 'theme',
+    description: 'Change theme',
+  },
+  {
     command: 'shortcuts',
     description: 'Keyboard shortcuts',
   },
@@ -181,6 +185,25 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   learning: () =>
     `I am currently learning Rust by following <a href="https://app.pluralsight.com/library/courses/fundamentals-rust/table-of-contents" target="_blank">Rust Fundamentals by Edward Curren</a>.`,
 
+  theme: (...args) => {
+    if (args[0] === "--help") {
+      return `Usage: theme <theme_name>\nAvailable themes: ${Object.keys(THEMES).map((theme) => `<b>${theme}</b>`).join(", ")}`;
+    }
+
+    const theme = args[0];
+    if (Object.keys(THEMES).includes(theme)) {
+      const newThemeProperties = THEMES[theme];
+      const root = document.documentElement;
+
+      Object.entries(newThemeProperties).forEach(([property, value]) => {
+        root.style.setProperty(property, value);
+      });
+      return `Theme set to ${theme}`;
+    } else {
+      return `Invalid theme. Please use one of the following: ${Object.keys(THEMES).map((theme) => `<b>${theme}</b>`).join(", ")}`;
+    }
+  },
+
   shortcuts: () =>
     SHORTCUTS.map(
       shortcut => `<div style="display: flex; justify-content: space-between;">
@@ -191,6 +214,21 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
 
   _error: input =>
     `<div class="help-command">sh: command not found: ${input}</div><div class="help-command">See \`help\` for info`,
+};
+
+export const THEMES = {
+  cyberpunk: {
+    "--primary": "var(--cyberpunk-primary)",
+    "--secondary": "var(--cyberpunk-secondary)",
+    "--background-color": "var(--cyberpunk-background-color)",
+    "--text-color": "var(--cyberpunk-text-color)",
+  },
+  retro: {
+    "--primary": "var(--retro-primary)",
+    "--secondary": "var(--retro-secondary)",
+    "--background-color": "var(--retro-background-color)",
+    "--text-color": "var(--retro-text-color)",
+  },
 };
 
 const SHORTCUTS = [
