@@ -1,7 +1,7 @@
 import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from 'react-icons/fa';
 import ReactDOMServer from 'react-dom/server';
 
-const COMMANDS = [
+export const COMMANDS = [
   {
     command: 'about',
     description: 'About Me',
