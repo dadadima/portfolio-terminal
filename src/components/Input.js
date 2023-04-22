@@ -1,44 +1,26 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { COMMANDS, THEMES } from '../utils/commandHelper';
 import styles from './Input.module.css';
 
+const commandNames = COMMANDS.map(cmd => cmd.command);
+
 export default function Input({
-  command,
-  onSubmit,
-  commandHistory,
-  historyIndex,
-  setHistoryIndex,
-}) {
+                                command,
+                                onSubmit,
+                                commandHistory,
+                                historyIndex,
+                                setHistoryIndex,
+                              }) {
   const [_command, setCommand] = useState(command ? command : '');
   const [isValidCommand, setIsValidCommand] = useState(false);
   const [autocompleteIndex, setAutocompleteIndex] = useState(0);
   const originalPrefixRef = useRef('');
   const matchingCommandsRef = useRef([]);
 
-  const handleKeyDown = e => {
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      const newIndex = Math.max(historyIndex - 1, 0);
-      setHistoryIndex(newIndex);
-      setCommand(commandHistory[newIndex] || '');
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      const newIndex = Math.min(historyIndex + 1, commandHistory.length - 1);
-      setHistoryIndex(newIndex);
-      setCommand(commandHistory[newIndex] || '');
-    } else if (e.key === 'Tab') {
-      e.preventDefault();
-      autocompleteCommand();
-    }  else {
-      originalPrefixRef.current = '';
-      matchingCommandsRef.current = [];
-    }
-  };
-
-  const autocompleteCommand = () => {
+  const autocompleteCommand = useCallback(() => {
     if (!originalPrefixRef.current) {
       originalPrefixRef.current = _command.trim();
-      matchingCommandsRef.current = COMMANDS.map(cmd => cmd.command).filter(cmd =>
+      matchingCommandsRef.current = commandNames.filter(cmd =>
         cmd.startsWith(originalPrefixRef.current)
       );
     }
@@ -52,11 +34,33 @@ export default function Input({
     } else {
       setAutocompleteIndex(0);
     }
-  };
+  }, [autocompleteIndex, _command]);
 
-  const checkValidCommand = cmd => {
+  const handleKeyDown = useCallback(e => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const newIndex = Math.max(historyIndex - 1, 0);
+      setHistoryIndex(newIndex);
+      setCommand(commandHistory[newIndex] || '');
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const newIndex = Math.min(historyIndex + 1, commandHistory.length - 1);
+      setHistoryIndex(newIndex);
+      setCommand(commandHistory[newIndex] || '');
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      autocompleteCommand();
+    } else {
+      originalPrefixRef.current = '';
+      matchingCommandsRef.current = [];
+    }
+  }, [historyIndex, commandHistory, autocompleteCommand]);
+
+
+
+  const checkValidCommand = useCallback(cmd => {
     const [baseCommand, ...args] = cmd.trim().split(" ");
-    const isValidBaseCommand = COMMANDS.map(cmd => cmd.command).includes(baseCommand) || baseCommand === 'clear';
+    const isValidBaseCommand = commandNames.includes(baseCommand) || baseCommand === 'clear';
 
     if (!isValidBaseCommand) {
       return false;
@@ -67,20 +71,20 @@ export default function Input({
     }
 
     return args.length === 0;
-  };
+  }, []);
 
-  const handleSubmit = e => {
+  const handleSubmit = useCallback(e => {
     e.preventDefault();
     setCommand('');
     return onSubmit(_command.trim());
-  };
+  }, [_command, onSubmit]);
 
   useEffect(() => {
     setIsValidCommand(checkValidCommand(_command));
-  }, [_command]);
+  }, [_command, checkValidCommand]);
 
   return (
-    <form onSubmit={e => handleSubmit(e)}>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="command">
         <span>🚀</span> <span style={{ color: 'var(--primary)' }}>~</span>{' '}
         <span style={{ color: 'var(--secondary)' }}>❯</span>
