@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { CONTENTS } from '../utils/commandHelper';
+import { COMMANDS, THEMES } from '../utils/commandHelper';
 import styles from './Input.module.css';
 
 export default function Input({
@@ -38,7 +38,7 @@ export default function Input({
   const autocompleteCommand = () => {
     if (!originalPrefixRef.current) {
       originalPrefixRef.current = _command.trim();
-      matchingCommandsRef.current = Object.keys(CONTENTS).filter(cmd =>
+      matchingCommandsRef.current = COMMANDS.map(cmd => cmd.command).filter(cmd =>
         cmd.startsWith(originalPrefixRef.current)
       );
     }
@@ -55,7 +55,18 @@ export default function Input({
   };
 
   const checkValidCommand = cmd => {
-    return cmd.trim() in CONTENTS || cmd.trim() === 'clear';
+    const [baseCommand, ...args] = cmd.trim().split(" ");
+    const isValidBaseCommand = COMMANDS.map(cmd => cmd.command).includes(baseCommand) || baseCommand === 'clear';
+
+    if (!isValidBaseCommand) {
+      return false;
+    }
+
+    if (baseCommand === 'theme' && args.length > 0) {
+      return args[0] === '--help' || Object.keys(THEMES).includes(args[0]);
+    }
+
+    return args.length === 0;
   };
 
   const handleSubmit = e => {
