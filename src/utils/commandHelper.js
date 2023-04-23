@@ -113,7 +113,7 @@ export const CONTENTS = {
       <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span></div>`,
 
   about: () =>
-    `My name is Davide, but everybody calls me Dima. I am ${getAge(
+    `My name is Davide Di Matteo, <i>but everybody calls me Dima</i>. I am ${getAge(
       'October 04, 1994'
     )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://frontiersin.org/" target="_blank">Frontiers</a> as a Senior Data Engineer.
     <br /><br />
