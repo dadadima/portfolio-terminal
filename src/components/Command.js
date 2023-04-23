@@ -15,7 +15,7 @@ export default function Command({
     <div>
       <Input
         command={command}
-        onSubmit={command => onSubmit(command)}
+        onSubmit={onSubmit}
         commandHistory={commandHistory}
         historyIndex={historyIndex}
         setHistoryIndex={setHistoryIndex}

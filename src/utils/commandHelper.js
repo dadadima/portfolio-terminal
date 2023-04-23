@@ -1,48 +1,9 @@
 import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from 'react-icons/fa';
 import ReactDOMServer from 'react-dom/server';
 
-export const COMMANDS = [
-  {
-    command: 'about',
-    description: 'About Me',
-  },
-  {
-    command: 'skills',
-    description: 'My Tech Skills',
-  },
-  {
-    command: 'experience',
-    description: 'My Working Experience',
-  },
-  {
-    command: 'education',
-    description: 'My Education',
-  },
-  {
-    command: 'learning',
-    description: 'Currently Learning',
-  },
-  {
-    command: 'contact',
-    description: 'Contact Me',
-  },
-  {
-    command: 'theme',
-    description: 'Change theme',
-  },
-  {
-    command: 'shortcuts',
-    description: 'Keyboard shortcuts',
-  },
-  {
-    command: 'help',
-    description: 'List of commands',
-  },
-  {
-    command: 'clear',
-    description: 'Clear terminal',
-  },
-];
+import { COMMANDS } from './commands';
+import { THEMES } from './themes';
+import { SHORTCUTS } from './shortcuts';
 
 const getExperience = async () => {
   const experience = await (await fetch('/api/experience')).json();
@@ -129,6 +90,17 @@ const getContacts = async () => {
     .join('');
 };
 
+const getAge = dateString => {
+  const today = new Date();
+  const birthDate = new Date(dateString);
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+
+  return age;
+};
+
 export const CONTENTS = {
   help: () =>
     COMMANDS.map(
@@ -140,18 +112,18 @@ export const CONTENTS = {
     `<br />
       <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span></div>`,
 
-  about: () => `My name is Davide, but everybody calls me Dima. I am ${getAge(
-    'October 04, 1994'
-  )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://frontiersin.org/" target="_blank">Frontiers</a> as a Senior Data Engineer.
+  about: () =>
+    `My name is Davide Di Matteo, <i>but everybody calls me Dima</i>. I am ${getAge(
+      'October 04, 1994'
+    )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://frontiersin.org/" target="_blank">Frontiers</a> as a Senior Data Engineer.
     <br /><br />
     I love solving problems, automating, and fixing things. I am a big fan of Software Engineering principles and I am always looking for ways to improve my code.
     <br /><br />
-    I am passionate about the infrastructure side of Data Applications and I love experimenting with new technologies.
-    
+    I am passionate about the infrastructure side of Data Applications and I love experimenting with new technologies. 
   `,
 
-  education:
-    () => `I hold a double degree MSc in Data Science and Engineering from both the <a href="https://kth.se/en">Royal Institute of Technology</a> and the <a href="https://tue.nl/en/">Eindhoven University of Technology</a>. I graduated <i>cum laude</i>, and my MSc thesis on <a href="https://www.diva-portal.org/smash/get/diva2:1651780/FULLTEXT01.pdf" target="_new">Energy-Efficient Private Forecasting
+  education: () =>
+    `I hold a double degree MSc in Data Science and Engineering from both the <a href="https://kth.se/en">Royal Institute of Technology</a> and the <a href="https://tue.nl/en/">Eindhoven University of Technology</a>. I graduated <i>cum laude</i>, and my MSc thesis on <a href="https://www.diva-portal.org/smash/get/diva2:1651780/FULLTEXT01.pdf" target="_new">Energy-Efficient Private Forecasting
 on Health Data using Spiking Neural Networks</a> was awarded an A grade.
     
     <br /><br/>
@@ -186,8 +158,10 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
     `I am currently learning Rust by following <a href="https://app.pluralsight.com/library/courses/fundamentals-rust/table-of-contents" target="_blank">Rust Fundamentals by Edward Curren</a>.`,
 
   theme: (...args) => {
-    if (args[0] === "--help") {
-      return `Usage: theme <theme_name>\nAvailable themes: ${Object.keys(THEMES).map((theme) => `<b>${theme}</b>`).join(", ")}`;
+    if (args[0] === '--help') {
+      return `Usage: theme <theme_name>\nAvailable themes: ${Object.keys(THEMES)
+        .map(theme => `<b>${theme}</b>`)
+        .join(', ')}`;
     }
 
     const theme = args[0];
@@ -200,7 +174,11 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
       });
       return `Theme set to ${theme}`;
     } else {
-      return `Invalid theme. Please use one of the following: ${Object.keys(THEMES).map((theme) => `<b>${theme}</b>`).join(", ")}`;
+      return `Invalid theme. Please use one of the following: ${Object.keys(
+        THEMES
+      )
+        .map(theme => `<b>${theme}</b>`)
+        .join(', ')}`;
     }
   },
 
@@ -215,47 +193,6 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   _error: input =>
     `<div class="help-command">sh: command not found: ${input}</div><div class="help-command">See \`help\` for info`,
 };
-
-export const THEMES = {
-  cyberpunk: {
-    "--primary": "var(--cyberpunk-primary)",
-    "--secondary": "var(--cyberpunk-secondary)",
-    "--background-color": "var(--cyberpunk-background-color)",
-    "--text-color": "var(--cyberpunk-text-color)",
-  },
-  retro: {
-    "--primary": "var(--retro-primary)",
-    "--secondary": "var(--retro-secondary)",
-    "--background-color": "var(--retro-background-color)",
-    "--text-color": "var(--retro-text-color)",
-  },
-};
-
-const SHORTCUTS = [
-  {
-    name: 'clear',
-    keyCombination: '⌃ + L',
-  },
-  {
-    name: 'navigate command history',
-    link: '↑ or ↓',
-  },
-  {
-    name: 'autocomplete commands',
-    link: '⇥',
-  }
-];
-
-function getAge(dateString) {
-  const today = new Date();
-  const birthDate = new Date(dateString);
-
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
-
-  return age;
-}
 
 // learning: () => {
 //   window.open("website", "_blank");
