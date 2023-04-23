@@ -90,6 +90,17 @@ const getContacts = async () => {
     .join('');
 };
 
+const getAge = dateString => {
+  const today = new Date();
+  const birthDate = new Date(dateString);
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+
+  return age;
+};
+
 export const CONTENTS = {
   help: () =>
     COMMANDS.map(
@@ -101,31 +112,18 @@ export const CONTENTS = {
     `<br />
       <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span></div>`,
 
-  about: () => {
-    const getAge = dateString => {
-      const today = new Date();
-      const birthDate = new Date(dateString);
-
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
-
-      return age;
-    };
-
+  about: () =>
     `My name is Davide, but everybody calls me Dima. I am ${getAge(
       'October 04, 1994'
     )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://frontiersin.org/" target="_blank">Frontiers</a> as a Senior Data Engineer.
     <br /><br />
     I love solving problems, automating, and fixing things. I am a big fan of Software Engineering principles and I am always looking for ways to improve my code.
     <br /><br />
-    I am passionate about the infrastructure side of Data Applications and I love experimenting with new technologies.
-    
-  `;
-  },
+    I am passionate about the infrastructure side of Data Applications and I love experimenting with new technologies. 
+  `,
 
-  education:
-    () => `I hold a double degree MSc in Data Science and Engineering from both the <a href="https://kth.se/en">Royal Institute of Technology</a> and the <a href="https://tue.nl/en/">Eindhoven University of Technology</a>. I graduated <i>cum laude</i>, and my MSc thesis on <a href="https://www.diva-portal.org/smash/get/diva2:1651780/FULLTEXT01.pdf" target="_new">Energy-Efficient Private Forecasting
+  education: () =>
+    `I hold a double degree MSc in Data Science and Engineering from both the <a href="https://kth.se/en">Royal Institute of Technology</a> and the <a href="https://tue.nl/en/">Eindhoven University of Technology</a>. I graduated <i>cum laude</i>, and my MSc thesis on <a href="https://www.diva-portal.org/smash/get/diva2:1651780/FULLTEXT01.pdf" target="_new">Energy-Efficient Private Forecasting
 on Health Data using Spiking Neural Networks</a> was awarded an A grade.
     
     <br /><br/>
