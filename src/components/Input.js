@@ -11,6 +11,7 @@ export default function Input({
   commandHistory,
   historyIndex,
   setHistoryIndex,
+  inputRef,
 }) {
   const [_command, setCommand] = useState(command ? command : '');
   const [isValidCommand, setIsValidCommand] = useState(false);
@@ -106,7 +107,14 @@ export default function Input({
         onChange={e => setCommand(e.target.value)}
         onKeyDown={handleKeyDown}
         disabled={!!command}
-        ref={input => input && !command && input.focus()}
+        ref={input => {
+          if (input) {
+            !command && input.focus();
+            if (inputRef) {
+              inputRef.current = input;
+            }
+          }
+        }}
         autoFocus={command === ''}
       />
     </form>
