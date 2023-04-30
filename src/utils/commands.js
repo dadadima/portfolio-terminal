@@ -16,6 +16,10 @@ export const COMMANDS = [
     description: 'My Education',
   },
   {
+    command: 'publications',
+    description: 'My Publications',
+  },
+  {
     command: 'learning',
     description: 'Currently Learning',
   },

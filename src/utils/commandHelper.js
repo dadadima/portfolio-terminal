@@ -36,24 +36,57 @@ const getExperience = async () => {
       .map(
         exp => `
     <div class="command">
-        <div style="display: flex; justify-content: space-between;">
-            <span><strong><a href="${
+       <div style="display: flex; justify-content: space-between;">
+          <span><strong><a href="${
               exp.companyWebsite
             }" target="_blank"><b class="command">${
-          exp.companyName
-        }</b></a></strong>, <strong>${exp.title}</strong></span>
-            <span><em>${exp.place.city}</em>, ${computeYearsAndMonths(
-          exp.startDate,
-          exp.endDate
-        )}</span>
-        </div>      
-       
-        <br>
-        <strong>${exp.stack.join(', ')}</strong>
-        <br><br>
-        ${exp.description.replace(/\n/g, '<br>')}
-        <br><br><hr><br>
- 
+              exp.companyName
+            }</b></a></strong>, <strong>${exp.title}</strong></span>
+          <span><em>${exp.place.city}</em>, ${computeYearsAndMonths(
+              exp.startDate,
+              exp.endDate
+            )}</span>
+       </div>
+       <br>
+       <strong>${exp.stack.join(', ')}</strong>
+       <br><br>
+       ${exp.description.replace(/\n/g, '<br>')}
+       <br><br>
+       <hr>
+       <br>
+    </div>`
+      )
+      .join('')
+  );
+};
+
+const getPublications = async () => {
+  const publications = await (await fetch('/api/publications')).json();
+
+  return (
+    `<h3>My Publications</h3>` +
+    `<br>` +
+    publications
+      .map(
+        pub =>`
+    <div class="command">
+       <span><strong><a href="${
+              pub.link
+            }" target="_blank"><b class="command">${
+              pub.title
+            }</b></a></strong></span>
+       <br>
+       <br>
+       <strong>${pub.authors.join(', ')}</strong>
+       <br>
+       <br>
+       <span><em>${pub.year}, ${pub.Conference}</em></span>
+       <br>
+       <br>
+       ${pub.abstract.replace(/\n/g, '<br>')}
+       <br><br>
+       <hr>
+       <br>
     </div>`
       )
       .join('')
@@ -149,6 +182,8 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   
   I do have some experience in Web Development using Javascript, ReactJS, NextJS.
   `,
+
+  publications: getPublications,
 
   experience: getExperience,
 
