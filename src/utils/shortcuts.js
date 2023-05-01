@@ -4,6 +4,10 @@ export const SHORTCUTS = [
     keyCombination: '⌃ + L',
   },
   {
+    name: 'focus input field',
+    keyCombination: '⌃ + ↵',
+  },
+  {
     name: 'navigate command history',
     link: '↑ or ↓',
   },
