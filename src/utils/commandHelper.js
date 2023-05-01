@@ -38,14 +38,14 @@ const getExperience = async () => {
     <div class="command">
        <div style="display: flex; justify-content: space-between;">
           <span><strong><a href="${
-              exp.companyWebsite
-            }" target="_blank"><b class="command">${
-              exp.companyName
-            }</b></a></strong>, <strong>${exp.title}</strong></span>
+            exp.companyWebsite
+          }" target="_blank"><b class="command">${
+          exp.companyName
+        }</b></a></strong>, <strong>${exp.title}</strong></span>
           <span><em>${exp.place.city}</em>, ${computeYearsAndMonths(
-              exp.startDate,
-              exp.endDate
-            )}</span>
+          exp.startDate,
+          exp.endDate
+        )}</span>
        </div>
        <br>
        <strong>${exp.stack.join(', ')}</strong>
@@ -68,13 +68,11 @@ const getPublications = async () => {
     `<br>` +
     publications
       .map(
-        pub =>`
+        pub => `
     <div class="command">
-       <span><strong><a href="${
-              pub.link
-            }" target="_blank"><b class="command">${
-              pub.title
-            }</b></a></strong></span>
+       <span><strong><a href="${pub.link}" target="_blank"><b class="command">${
+          pub.title
+        }</b></a></strong></span>
        <br>
        <br>
        <strong>${pub.authors.join(', ')}</strong>

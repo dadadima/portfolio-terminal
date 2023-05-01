@@ -9,6 +9,7 @@ export default function Terminal() {
   const terminalRef = useRef(null);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const inputRef = useRef(null);
 
   const escapeHTML = str =>
     str
@@ -59,11 +60,20 @@ export default function Terminal() {
     }
   };
 
+  const focusInputField = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.ctrlKey && event.key === 'l') {
-        event.preventDefault(); // Prevent the default browser action for Ctrl+L (e.g. focusing the address bar)
+        event.preventDefault();
         addCommand('clear');
+      } else if (event.ctrlKey && event.key === 'Enter') {
+        event.preventDefault();
+        focusInputField();
       }
     };
 
@@ -86,6 +96,7 @@ export default function Terminal() {
           commandHistory={commandHistory}
           historyIndex={historyIndex}
           setHistoryIndex={setHistoryIndex}
+          inputRef={inputRef}
         />
       )}
     </div>

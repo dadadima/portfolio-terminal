@@ -1,7 +1,6 @@
 import Input from './Input';
 import Output from './Output';
 
-// Add commandHistory, historyIndex, setHistoryIndex, isValidCommand as props
 export default function Command({
   command,
   output,
@@ -9,7 +8,7 @@ export default function Command({
   commandHistory,
   historyIndex,
   setHistoryIndex,
-  isValidCommand,
+  inputRef,
 }) {
   return (
     <div>
@@ -19,7 +18,7 @@ export default function Command({
         commandHistory={commandHistory}
         historyIndex={historyIndex}
         setHistoryIndex={setHistoryIndex}
-        isValidCommand={isValidCommand}
+        inputRef={inputRef}
       />
       {output && <Output output={output} />}
     </div>
