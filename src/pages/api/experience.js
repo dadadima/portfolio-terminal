@@ -101,7 +101,7 @@ export default async function handler(req, res) {
           'https://kth.se/en/eecs/skolan-for-elektroteknik-och-datavetenskap-1.760855',
         title: 'Teaching Assistant',
         description:
-          'Working in the Department of Electrical Engineering and Computer Science. Responsible for the Labs for a course in Dynamic Web Programming. Preparing, coordinating, and assessing laboratories and coding projects.',
+          'Working in the Department of Electrical Engineering and Computer Science. Responsible for the labs of a Bachelor\'s course in Dynamic Web Programming. Preparing, coordinating, and assessing laboratories and coding projects.',
         stack: ['JavaScript', 'DOM APIs', 'HTML5', 'CSS3', 'Redux', 'React'],
         place: { city: 'Stockholm', country: 'Sweden' },
         startDate: 'Oct. 2019',
