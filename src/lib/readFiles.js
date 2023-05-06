@@ -5,7 +5,7 @@ function readFilesRecursively(dir, fileContents = []) {
   const ignored = ['node_modules'];
   const filenames = fs.readdirSync(dir);
 
-  filenames.forEach((filename) => {
+  filenames.forEach(filename => {
     if (ignored.includes(filename)) return;
 
     const filePath = path.join(dir, filename);

@@ -17,7 +17,12 @@ export default function Output({ output }) {
   return (
     <div>
       {isSourceCode ? (
-        formattedOutput
+        <>
+          {formattedOutput}
+          <p>
+            The source code is also available on  <a href="https://github.com/dadadima94/portfolio-terminal">Github</a>.
+          </p>
+        </>
       ) : (
         <div dangerouslySetInnerHTML={{ __html: formattedOutput }} />
       )}

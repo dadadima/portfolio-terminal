@@ -12,7 +12,10 @@ function generateSourceCode() {
       ...file,
       content: file.content.split('\n'),
     }));
-    fs.writeFileSync(outputFile, JSON.stringify(formattedFileContents, null, 2));
+    fs.writeFileSync(
+      outputFile,
+      JSON.stringify(formattedFileContents, null, 2)
+    );
     console.log(`Generated ${outputFile}`);
   } catch (error) {
     console.error('Error generating source code:', error);
