@@ -6,7 +6,12 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         {/* Add favicon links here */}
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/robot-pink.ico"/>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/robot-pink.ico"
+        />
       </Head>
       <Component {...pageProps} />
     </>

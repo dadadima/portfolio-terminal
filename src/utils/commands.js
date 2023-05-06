@@ -32,6 +32,10 @@ export const COMMANDS = [
     description: 'Change theme',
   },
   {
+    command: 'source',
+    description: 'Display the Source Code of dima.casa',
+  },
+  {
     command: 'shortcuts',
     description: 'Keyboard shortcuts',
   },
