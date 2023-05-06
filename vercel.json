@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/sourceCode.js": {
+    "pages/api/sourceCode.js": {
       "includeFiles": "src/**"
     }
   }
