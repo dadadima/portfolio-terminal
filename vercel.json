@@ -3,10 +3,5 @@
     "pages/api/sourceCode.js": {
       "includeFiles": "src/**"
     }
-  },
-  "build": {
-    "env": {
-      "PROJECT_ROOT": "./"
-    }
   }
 }

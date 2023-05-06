@@ -3,7 +3,7 @@ import path from 'path';
 
 export default async function handler(req, res) {
   try {
-    const srcDirectory = path.join(process.env.PROJECT_ROOT || __dirname, '..', '..', 'src');
+    const srcDirectory = path.join(process.cwd(), 'src');
     console.log('srcDirectory:', srcDirectory);
 
     const fileContents = readFilesRecursively(srcDirectory);
