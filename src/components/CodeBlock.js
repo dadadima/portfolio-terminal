@@ -21,14 +21,18 @@ export default function CodeBlock({ language, value }) {
         paddingRight: '1em',
         userSelect: 'none',
       }}
-      lineNumberStyle={(lineNumber) => ({
-        color: lineNumber % 2 === 0 ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.5)',
+      lineNumberStyle={lineNumber => ({
+        color:
+          lineNumber % 2 === 0
+            ? 'rgba(255, 255, 255, 0.3)'
+            : 'rgba(255, 255, 255, 0.5)',
       })}
       wrapLines={true}
       wrapLongLines={true}
-      lineProps={(lineNumber) => ({
+      lineProps={lineNumber => ({
         style: {
-          backgroundColor: lineNumber % 2 === 0 ? 'rgba(0, 0, 0, 0.1)' : 'transparent',
+          backgroundColor:
+            lineNumber % 2 === 0 ? 'rgba(0, 0, 0, 0.1)' : 'transparent',
         },
       })}
     >

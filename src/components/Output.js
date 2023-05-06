@@ -9,7 +9,7 @@ export default function Output({ output }) {
         <div key={index}>
           <p className={styles.filename}>{file.filename}</p>
           <CodeBlock language={file.lang} value={file.content} />
-          <br/>
+          <br />
         </div>
       ))
     : output;
