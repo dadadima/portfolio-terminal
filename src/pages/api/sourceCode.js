@@ -1,8 +1,16 @@
 import readFilesRecursively from '@/lib/readFiles';
+import path from 'path';
 
 export default async function handler(req, res) {
   try {
-    const srcDirectory = process.env.NODE_ENV === 'production' ? `${process.env.PROJECT_ROOT}/src` : `${process.cwd()}/src`;
+    // Determine the root directory based on the environment
+    const rootDirectory =
+      process.env.NODE_ENV === 'production'
+        ? process.env.PROJECT_ROOT
+        : process.cwd();
+
+    // Read the contents of the 'src' directory and its subdirectories
+    const srcDirectory = path.join(rootDirectory, 'src');
     const fileContents = readFilesRecursively(srcDirectory);
 
     res.status(200).json({ fileContents });
