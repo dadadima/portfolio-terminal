@@ -132,6 +132,25 @@ const getAge = dateString => {
   return age;
 };
 
+const getSourceCode = async () => {
+  try {
+    const response = await fetch('/api/sourceCode');
+    if (response.ok) {
+      const { fileContents } = await response.json();
+      return fileContents;
+    } else {
+      const errorResponse = await response.json();
+      console.error('Error fetching source code:', errorResponse);
+      return {
+        error: `An error occurred while fetching the source code: ${errorResponse.error}`,
+      };
+    }
+  } catch (error) {
+    console.error('Error in source command:', error);
+    return { error: 'An error occurred while fetching the source code.' };
+  }
+};
+
 export const CONTENTS = {
   help: () =>
     COMMANDS.map(
@@ -188,11 +207,12 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   contact: getContacts,
 
   learning: () => `
-I am currently learning Rust by following <a href="https://app.pluralsight.com/library/courses/fundamentals-rust/table-of-contents" target="_blank">Rust Fundamentals by Edward Curren</a>.
-<br /> <br />
-Lately, I am experimenting a lot with different LLMs prompts, and I am trying to understand how to use them to solve repetitive development tasks and speed up my coding.
+  I am currently learning Rust by following <a href="https://app.pluralsight.com/library/courses/fundamentals-rust/table-of-contents" target="_blank">Rust Fundamentals by Edward Curren</a>.
+  <br /> <br />
+  Lately, I am experimenting a lot with different LLMs prompts, and I am trying to understand how to use them to solve repetitive development tasks and speed up my coding.
+  `,
 
-`,
+  source: getSourceCode,
 
   theme: (...args) => {
     if (args[0] === '--help') {

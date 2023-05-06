@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { CONTENTS } from '@/utils/commandHelper';
 import Command from './Command';
 import styles from './Terminal.module.css';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function Terminal() {
   const [commands, setCommands] = useState([]);
@@ -34,6 +36,12 @@ export default function Terminal() {
     command = parts.join(' ');
 
     const commandAcceptsArgs = baseCommand === 'theme';
+
+    if (baseCommand === 'sourcecode') {
+      const response = await axios.get('/api/sourceCode');
+      const { fileContents } = response.data;
+      return fileContents;
+    }
 
     if (baseCommand in CONTENTS && (args.length === 0 || commandAcceptsArgs)) {
       return await CONTENTS[baseCommand](...args);
