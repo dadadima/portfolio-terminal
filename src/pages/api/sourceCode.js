@@ -3,15 +3,13 @@ import path from 'path';
 
 export default async function handler(req, res) {
   try {
-    // Determine the root directory based on the environment
-    const rootDirectory =
-      process.env.NODE_ENV === 'production'
-        ? process.env.PROJECT_ROOT
-        : process.cwd();
+    const srcDirectory = process.env.PROJECT_ROOT
+      ? path.join(process.env.PROJECT_ROOT, 'src')
+      : path.join(process.cwd(), 'src');
+    console.log('srcDirectory:', srcDirectory);
 
-    // Read the contents of the 'src' directory and its subdirectories
-    const srcDirectory = path.join(rootDirectory, 'src');
     const fileContents = readFilesRecursively(srcDirectory);
+    console.log('fileContents:', fileContents);
 
     res.status(200).json({ fileContents });
   } catch (error) {
