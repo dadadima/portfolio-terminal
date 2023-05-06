@@ -1,13 +1,10 @@
-import readFilesRecursively from '@/lib/readFiles';
+import fs from 'fs';
 import path from 'path';
 
 export default async function handler(req, res) {
   try {
-    const srcDirectory = path.join(process.cwd(), 'src');
-    console.log('srcDirectory:', srcDirectory);
-
-    const fileContents = readFilesRecursively(srcDirectory);
-    console.log('fileContents:', fileContents);
+    const dataPath = path.join(process.cwd(), 'sourceCodeData.json');
+    const fileContents = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
     res.status(200).json({ fileContents });
   } catch (error) {

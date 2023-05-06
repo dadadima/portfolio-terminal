@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "generate-source": "node src/lib/generateSourceCode.js",
+    "build": "npm run generate-source && next build",
     "start": "next start",
     "format": "prettier --write .",
     "lint": "next lint"
@@ -16,6 +17,7 @@
     "eslint-config-next": "13.3.0",
     "eslint-config-prettier": "^8.8.0",
     "next": "13.3.0",
+    "next-auth": "^4.22.1",
     "prettier": "^2.8.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",

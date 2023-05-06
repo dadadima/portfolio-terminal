@@ -1,12 +1,13 @@
 import React from 'react';
-import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { PrismAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 export default function CodeBlock({ language, value }) {
+  const formattedValue = Array.isArray(value) ? value.join('\n') : value;
   return (
     <SyntaxHighlighter
       language={language}
-      style={atomOneDark}
+      style={oneDark}
       customStyle={{
         borderRadius: '5px',
         padding: '1em',
@@ -36,7 +37,7 @@ export default function CodeBlock({ language, value }) {
         },
       })}
     >
-      {value}
+      {formattedValue}
     </SyntaxHighlighter>
   );
 }
