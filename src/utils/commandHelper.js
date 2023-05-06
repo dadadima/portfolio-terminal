@@ -141,14 +141,14 @@ export const CONTENTS = {
       </div>`
     ).join('') +
     `<br />
-      <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span></div>`,
+      <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span>.</div>`,
 
   about: () =>
     `My name is Davide Di Matteo, <i>but everybody calls me Dima</i>. I am ${getAge(
       'October 04, 1994'
     )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://frontiersin.org/" target="_blank">Frontiers</a> as a Senior Data Engineer.
     <br /><br />
-    I love solving problems, automating, and fixing things. I am a big fan of Software Engineering principles and I am always looking for ways to improve my code.
+    I love solving problems, automating, and fixing things. I am a big fan of Software Engineering principles and I am always looking for ways to improve the codebase.
     <br /><br />
     I am passionate about the infrastructure side of Data Applications and I love experimenting with new technologies. 
   `,
@@ -162,7 +162,7 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
     `,
 
   skills: () => `
-  I am an experienced Data Engineer who is enthusiastic about Automation and upholding Software Engineering principles.
+  I am an experienced Data Engineer who is enthusiastic about Automation and upholding Software Engineering principles. I really like to collaborate and improve the development lifecycle of the team.
   
   <br /><br />
   
@@ -187,8 +187,12 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
 
   contact: getContacts,
 
-  learning: () =>
-    `I am currently learning Rust by following <a href="https://app.pluralsight.com/library/courses/fundamentals-rust/table-of-contents" target="_blank">Rust Fundamentals by Edward Curren</a>.`,
+  learning: () => `
+I am currently learning Rust by following <a href="https://app.pluralsight.com/library/courses/fundamentals-rust/table-of-contents" target="_blank">Rust Fundamentals by Edward Curren</a>.
+<br /> <br />
+Lately, I am experimenting a lot with different LLMs prompts, and I am trying to understand how to use them to solve repetitive development tasks and speed up my coding.
+
+`,
 
   theme: (...args) => {
     if (args[0] === '--help') {
@@ -226,8 +230,3 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   _error: input =>
     `<div class="help-command">sh: command not found: ${input}</div><div class="help-command">See \`help\` for info`,
 };
-
-// learning: () => {
-//   window.open("website", "_blank");
-//   return "";
-// },
