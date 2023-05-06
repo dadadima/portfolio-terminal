@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 function readFilesRecursively(dir, fileContents = []) {
   const filenames = fs.readdirSync(dir);
 
-  filenames.forEach(filename => {
+  filenames.forEach((filename) => {
     const filePath = path.join(dir, filename);
     const fileStat = fs.statSync(filePath);
 
@@ -13,7 +13,7 @@ function readFilesRecursively(dir, fileContents = []) {
     } else if (/\.js$/.test(filename)) {
       const content = fs.readFileSync(filePath, 'utf8');
       fileContents.push({
-        filename: path.relative(process.cwd(), filePath),
+        filename: path.relative(process.env.NODE_ENV === 'production' ? process.env.PROJECT_ROOT : process.cwd(), filePath),
         content,
         lang: 'javascript',
       });
@@ -23,4 +23,4 @@ function readFilesRecursively(dir, fileContents = []) {
   return fileContents;
 }
 
-module.exports = readFilesRecursively;
+export default readFilesRecursively;

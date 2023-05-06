@@ -1,10 +1,8 @@
-import path from 'path';
-import readFilesRecursively from '../../lib/readFiles';
+import readFilesRecursively from '@/utils/readFiles';
 
 export default async function handler(req, res) {
   try {
-    // Read the contents of the 'src' directory and its subdirectories
-    const srcDirectory = path.join(process.cwd(), 'src');
+    const srcDirectory = process.env.NODE_ENV === 'production' ? `${process.env.PROJECT_ROOT}/src` : `${process.cwd()}/src`;
     const fileContents = readFilesRecursively(srcDirectory);
 
     res.status(200).json({ fileContents });
