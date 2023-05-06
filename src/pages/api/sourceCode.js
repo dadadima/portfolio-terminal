@@ -1,4 +1,4 @@
-import readFilesRecursively from '@/utils/readFiles';
+import readFilesRecursively from '@/lib/readFiles';
 
 export default async function handler(req, res) {
   try {
