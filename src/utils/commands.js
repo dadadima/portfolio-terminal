@@ -33,7 +33,7 @@ export const COMMANDS = [
   },
   {
     command: 'source',
-    description: 'Display the Source Code of dima.casa',
+    description: 'Source code dima.casa',
   },
   {
     command: 'shortcuts',
