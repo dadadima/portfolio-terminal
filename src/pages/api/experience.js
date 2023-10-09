@@ -20,6 +20,7 @@ export default async function handler(req, res) {
           'Python',
           'Airflow',
           'dbt',
+          'Azure DevOps',
           'Kafka',
           'Airbyte',
           'BigQuery',
