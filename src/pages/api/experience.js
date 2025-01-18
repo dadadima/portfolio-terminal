@@ -10,6 +10,28 @@ export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
   if (req.method === 'GET') {
     const experience = [
+          {
+            companyName: 'Collibra',
+            companyWebsite: 'https://www.collibra.com/us/en',
+            title: 'Senior Data Engineer',
+            description:
+              'Working full-remote for the world leader <a href="https://www.collibra.com/us/en/blog/collibra-named-a-leader-in-the-gartner-magic-quadrant-for-data-and-analytics-governance-platforms" target="_blank">Data Governance Platform</a>. Part of the Data Engineering Team under Collibra Data Office and responsible for powering Collibra analytics.', // todo add more
+            stack: [
+              'Python',
+              'Airflow',
+              'dbt',
+              'SQL',
+              'Docker',
+              'Github Actions',
+              'Fivetran',
+              'Redshift',
+              'AWS',
+              'Terraform',
+            ],
+            place: { city: 'Amsterdam', country: 'the Netherlands' },
+            startDate: 'May 2024',
+            endDate: 'Present',
+          },
       {
         companyName: 'Frontiers',
         companyWebsite: 'https://frontiersin.org/',
@@ -31,7 +53,7 @@ export default async function handler(req, res) {
         ],
         place: { city: 'Amsterdam', country: 'the Netherlands' },
         startDate: 'Dec. 2022',
-        endDate: 'Present',
+        endDate: 'May 2024',
       },
       {
         companyName: 'ABN AMRO Clearing Bank',

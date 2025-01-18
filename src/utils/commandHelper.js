@@ -168,7 +168,7 @@ export const CONTENTS = {
     <br /><br />
     My name is Davide Di Matteo, <i>but everybody calls me Dima</i>. I am ${getAge(
       'October 04, 1994'
-    )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://frontiersin.org/" target="_blank">Frontiers</a> as a Senior Data Engineer.
+    )} and I\'m a Data Engineer based in Amsterdam. I currently work at <a href="https://www.collibra.com/us/en" target="_blank">Collibra</a> as a Senior Data Engineer.
     <br /><br />
     I love solving problems, automating, and fixing things. I am a big fan of Software Engineering principles and I am always looking for ways to improve the codebase.
     <br /><br />
