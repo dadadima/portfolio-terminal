@@ -192,7 +192,7 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
   <div class="skill"><b>data</b>: Spark, Airflow, dbt, Pandas, Kafka, Docker, K8s<br /></div>
   <div class="skill"><b>database</b>: BigQuery, Snowflake, Redshift, Databricks, Elasticsearch, Postgres<br /></div>
   <div class="skill"><b>infrastructure</b>: Terraform, CDK<br /></div>
-  <div class="skill"><b>ci/cd</b>: AWS CodePipeline, Azure DevOps, Concourse, Jenkins<br /></div>
+  <div class="skill"><b>ci/cd</b>: Github, Azure DevOps, AWS CodePipeline, Concourse, Jenkins<br /></div>
   <div class="skill"><b>cloud</b>: AWS, GCP, Azure<br /></div>
   
   <br />
