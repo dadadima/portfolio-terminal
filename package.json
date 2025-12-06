@@ -14,15 +14,18 @@
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
-    "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.5.7",
     "eslint-config-prettier": "^8.8.0",
-    "next": "13.3.0",
-    "next-auth": "^4.22.1",
+    "next": "^15.5.7",
+    "next-auth": "^4.24.13",
     "prettier": "^2.8.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-icons": "^4.8.0",
     "react-syntax-highlighter": "^15.5.0"
+  },
+  "engines": {
+    "node": ">=24.x"
   }
 }
