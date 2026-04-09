@@ -47,4 +47,32 @@ export const COMMANDS = [
     command: 'clear',
     description: 'Clear terminal',
   },
+  {
+    command: 'sudo',
+    description: 'Become root (just kidding)',
+  },
+  {
+    command: 'matrix',
+    description: 'Enter the matrix',
+  },
+  {
+    command: 'sl',
+    description: 'Steam locomotive',
+  },
+  {
+    command: 'echo',
+    description: 'Print text',
+  },
+  {
+    command: 'neofetch',
+    description: 'System info with style',
+  },
+  {
+    command: 'date',
+    description: 'Show current date & time',
+  },
+  {
+    command: 'cowsay',
+    description: 'Cowsay ASCII art',
+  },
 ];
