@@ -40,12 +40,12 @@ const getExperience = async () => {
           <span><strong><a href="${
             exp.companyWebsite
           }" target="_blank"><b class="command">${
-            exp.companyName
-          }</b></a></strong>, <strong>${exp.title}</strong></span>
+          exp.companyName
+        }</b></a></strong>, <strong>${exp.title}</strong></span>
           <span><em>${exp.place.city}</em>, ${computeYearsAndMonths(
-            exp.startDate,
-            exp.endDate
-          )}</span>
+          exp.startDate,
+          exp.endDate
+        )}</span>
        </div>
        <br>
        <strong>${exp.stack.join(', ')}</strong>
@@ -71,8 +71,8 @@ const getPublications = async () => {
         pub => `
     <div class="command">
        <span><strong><a href="${pub.link}" target="_blank"><b class="command">${
-         pub.title
-       }</b></a></strong></span>
+          pub.title
+        }</b></a></strong></span>
        <br>
        <br>
        <strong>${pub.authors.join(', ')}</strong>
@@ -252,110 +252,4 @@ on Health Data using Spiking Neural Networks</a> was awarded an A grade.
 
   _error: input =>
     `<div class="help-command">sh: command not found: ${input}</div><div class="help-command">See \`help\` for info`,
-
-  sudo: () => `
-    <div class="command" style="color: #ff5555; font-weight: bold;">
-    [sudo] password for Dima:<br>
-    <span style="animation: blink 1s infinite;">▋</span>
-    </div>
-    <br>
-    <div class="command">Nice try, but you can't sudo here. This isn't your terminal!</div>
-  `,
-
-  matrix: () => `
-    <div class="command" style="color: #00ff00; font-family: monospace; font-size: 8px; line-height: 8px;">
-    <pre>
-      \u001b[32m░░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░
-      ░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░
-      ░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░
-      ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░
-      ░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░
-      ░░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░
-      ░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░
-      ░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░
-      ░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░
-      ░░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░
-      ░░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░
-    </pre>
-    </div>
-    <br>
-    <div class="command">Follow the white rabbit... <span style="color: #00ff00;">Wake up, Neo...</span></div>
-  `,
-
-  sl: () => `
-    <div class="command" style="font-family: monospace; white-space: pre;">
-        ====        ________                ______
-    _D _||  |_______||       |________|
-      | \               ||    \       \   ___
-    \_/          \   ||_____||________|\ \_/
-    \/_____||   ||   ||       || /   __ /
-      _  |    ||   ||       |||  |  ||
-     |___|____||___||_______||/|__|  |___|
-     /        \__/   \_______   )/___)__/
-    |                  ==       ///   \\\\
-    \_==__==_=/      ((      _///____\\\\
-      /  _- \_      ///    _---___-_)
-      \  \   \)    //_---==_____==/
-    _// )   \__--==__-==____     =/_
-    \ - )      //            \\
-     \_/       \\     (      \\
-                \\    )      \\
-     </div>
-    <br>
-    <div class="command"> choo choo! 🚂</div>
-  `,
-
-  echo: (...args) => `<div class="command">${args.join(' ')}</div>`,
-
-  neofetch: () => {
-    const ascii = `
-        ██╗     ██╗   ██╗ ██████╗ ██╗  ██╗
-        ██║     ██║   ██║██╔═══██╗██║ ██╔╝
-        ██║     ██║   ██║██║   ██║█████╔╝ 
-        ██║     ██║   ██║██║   ██║██╔═██╗ 
-        ███████╗╚██████╔╝╚██████╔╝█��║  ██╗
-        ╚══════╝ ╚════╝  ╚════╝ ╚═╝  ╚═╝`;
-    return `<pre style="color: var(--secondary); font-family: monospace; font-size: 12px;">${ascii}</pre>
-    <br>
-    <div class="command">
-    <b>dima</b>@<b>portfolio</b><br>
-    <b>--------</b><br>
-    OS:       <span class="meaning">Web 3.0+</span><br>
-    Host:     <span class="meaning">React Terminal</span><br>
-    Kernel:   <span class="meaning">JavaScript ES6+</span><br>
-    Uptime:   <span class="meaning">${new Date().getHours()}h ${new Date().getMinutes()}m</span><br>
-    Shell:    <span class="meaning">zsh</span><br>
-    Resolution: <span class="meaning">${typeof window !== 'undefined' ? window.innerWidth + 'x' + window.innerHeight : 'N/A'}</span><br>
-    </div>`;
-  },
-
-  date: () => {
-    const now = new Date();
-    const options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      timeZoneName: 'short',
-    };
-    return `<div class="command">${now.toLocaleDateString('en-US', options)}</div>`;
-  },
-
-  cowsay: (...args) => {
-    const text = args.join(' ') || 'Moo!';
-    return `<pre style="font-family: monospace;">
-        ${'_'.repeat(text.length + 2)}
-       < ${text} >
-        ${'─'.repeat(text.length + 2)}
-               \   ^__^
-                \  (oo)\_______
-                   (__)\       )\/\\
-                       ||----w |
-                       ||     ||
-       </pre>
-    <div class="command">Have a nice day!</div>`;
-  },
 };
