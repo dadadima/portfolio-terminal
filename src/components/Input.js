@@ -39,18 +39,31 @@ export default function Input({
     }
   }, [autocompleteIndex, _command]);
 
-  const handleKeyDown = useCallback(
+const handleKeyDown = useCallback(
     e => {
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        const newIndex = Math.max(historyIndex - 1, 0);
+        if (commandHistory.length === 0) return;
+        const maxIndex = commandHistory.length - 1;
+        const newIndex = Math.min(historyIndex + 1, maxIndex);
         setHistoryIndex(newIndex);
-        setCommand(commandHistory[newIndex] || '');
+        setCommand(commandHistory[maxIndex - newIndex] || '');
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        const newIndex = Math.min(historyIndex + 1, commandHistory.length - 1);
+        if (commandHistory.length === 0) return;
+        const newIndex = historyIndex > 0 ? historyIndex - 1 : -1;
         setHistoryIndex(newIndex);
-        setCommand(commandHistory[newIndex] || '');
+        setCommand(newIndex >= 0 ? commandHistory[commandHistory.length - 1 - newIndex] : '');
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        autocompleteCommand();
+      } else {
+        originalPrefixRef.current = '';
+        matchingCommandsRef.current = [];
+      }
+    },
+    [historyIndex, commandHistory, autocompleteCommand]
+  );
       } else if (e.key === 'Tab') {
         e.preventDefault();
         autocompleteCommand();
@@ -104,7 +117,10 @@ export default function Input({
           isValidCommand ? styles.validCommand : ''
         }`}
         value={_command}
-        onChange={e => setCommand(e.target.value)}
+        onChange={e => {
+          setCommand(e.target.value);
+          setHistoryIndex(-1);
+        }}
         onKeyDown={handleKeyDown}
         disabled={!!command}
         ref={input => {

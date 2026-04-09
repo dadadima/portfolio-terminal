@@ -59,8 +59,13 @@ export default function Terminal() {
     const output = await executeCommand(command);
     newCommand.output = output;
 
-    setCommandHistory(prevCommandHistory => [...prevCommandHistory, command]);
-    setHistoryIndex(prevHistoryIndex => prevHistoryIndex + 1);
+    setCommandHistory(prevCommandHistory => {
+      const lastCommand = prevCommandHistory[prevCommandHistory.length - 1];
+      if (lastCommand === command) {
+        return prevCommandHistory;
+      }
+      return [...prevCommandHistory, command];
+    });
 
     setLoading(false);
     if (terminalRef) {
