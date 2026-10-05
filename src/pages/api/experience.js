@@ -10,28 +10,51 @@ export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
   if (req.method === 'GET') {
     const experience = [
-          {
-            companyName: 'Collibra',
-            companyWebsite: 'https://www.collibra.com/us/en',
-            title: 'Senior Data Engineer',
-            description:
-              'Working full-remote for the world leader <a href="https://www.collibra.com/us/en/blog/collibra-named-a-leader-in-the-gartner-magic-quadrant-for-data-and-analytics-governance-platforms" target="_blank">Data Governance Platform</a>. Part of the Data Engineering Team under Collibra Data Office and responsible for powering Collibra analytics.', // todo add more
-            stack: [
-              'Python',
-              'Airflow',
-              'dbt',
-              'SQL',
-              'Docker',
-              'Github Actions',
-              'Fivetran',
-              'Redshift',
-              'AWS',
-              'Terraform',
-            ],
-            place: { city: 'Amsterdam', country: 'the Netherlands' },
-            startDate: 'May 2024',
-            endDate: 'Present',
-          },
+      {
+        companyName: 'Collibra',
+        companyWebsite: 'https://www.collibra.com/us/en',
+        title: 'Staff Data Engineer',
+        description:
+          "Leading the Data Engineering group within Collibra's Data Office, the team behind Collibra's internal analytics platform. Owning the platform end to end (Airflow, dbt, dlt, Terraform on GCP and AWS) and migrating the warehouse from Redshift to BigQuery. Focused on platform automation and AI tooling: infrastructure, access and cost controls managed as code, automated checks around the pipelines, and AI tooling for triage and support that lets a small team run the whole platform.",
+        stack: [
+          'Python',
+          'Airflow',
+          'dbt',
+          'dlt',
+          'BigQuery',
+          'Redshift',
+          'Terraform',
+          'GCP',
+          'AWS',
+          'Claude',
+          'SQL',
+        ],
+        place: { city: 'Amsterdam', country: 'the Netherlands' },
+        startDate: 'Oct. 2026',
+        endDate: 'Present',
+      },
+      {
+        companyName: 'Collibra',
+        companyWebsite: 'https://www.collibra.com/us/en',
+        title: 'Senior Data Engineer',
+        description:
+          'Working full-remote for the world leader <a href="https://www.collibra.com/us/en/blog/collibra-named-a-leader-in-the-gartner-magic-quadrant-for-data-and-analytics-governance-platforms" target="_blank">Data Governance Platform</a>. Part of the Data Engineering Team under Collibra Data Office and responsible for powering Collibra analytics.', // todo add more
+        stack: [
+          'Python',
+          'Airflow',
+          'dbt',
+          'SQL',
+          'Docker',
+          'Github Actions',
+          'Fivetran',
+          'Redshift',
+          'AWS',
+          'Terraform',
+        ],
+        place: { city: 'Amsterdam', country: 'the Netherlands' },
+        startDate: 'May 2024',
+        endDate: 'Sep. 2026',
+      },
       {
         companyName: 'Frontiers',
         companyWebsite: 'https://frontiersin.org/',
